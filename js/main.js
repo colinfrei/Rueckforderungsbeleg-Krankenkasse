@@ -1,6 +1,6 @@
 function init() {
     var annotations = {
-        'file:///Users/colinfrei/Projects/Rueckforderungsbeleg/img/rueckforderungsbeleg_1.png': [
+        'img/rueckforderungsbeleg_1.png': [
             {
                 text: "<strong>Rechnungssteller</strong><br />" +
                     "Enthält EAN-Nummer, ZSR-Nummer und Kontaktdaten zum Rechnungssteller.<br />" +
