@@ -3,13 +3,89 @@
 <head>
     <meta charset="utf-8">
     <title>Erklärung Rückforderungsbeleg</title>
-    <link rel="stylesheet" type="text/css" href="lib/annotorious/css/annotorious.css" />
+    <link rel="stylesheet" type="text/css" href="lib/tooltipster/css/tooltipster.css" />
+    <link rel="stylesheet" type="text/css" href="lib/tooltipster/css/themes/tooltipster-shadow.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="lib/maphilight/jquery.maphilight.js"></script>
+    <script src="lib/tooltipster/js/jquery.tooltipster.js"></script>
+    <script src="js/main.js"></script>
 </head>
-<body onload="init();">
-    <img src="img/rueckforderungsbeleg_1.png" id="image1" class="annotatable" />
+<body>
+    <img src="img/rueckforderungsbeleg_1.png" id="image1" usemap="#rueckforderungsbeleg" />
 
-    <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-    <script type="text/javascript" src="lib/annotorious/annotorious.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <map name="rueckforderungsbeleg">
+        <!-- Block Kopf -->
+        <area shape="rect" coords="200,60,540,77" title="Eindeutige Referenz des Dokuments" />
+        <area shape="rect" coords="780,60,890,77" title="Seitennummer" class="obvious" />
+
+        <area shape="rect" coords="220,78,420,95" title="EAN-Nr. des Rechnungsstellers" class="ean" />
+        <area shape="rect" coords="220,96,420,113" title="ZSR-Nr. des Rechnungsstellers" /><!-- TODO: Info about ZSR -->
+        <area shape="rect" coords="428,78,890,113" title="Kontaktdaten des Rechnungsstellers" />
+
+        <area shape="rect" coords="220,115,420,132" title="EAN-Nr. des Leistungserbringers" />
+        <area shape="rect" coords="177,133,420,150" title="ZSR-Nr. des Leistungserbringers" />
+        <area shape="rect" coords="428,115,890,150" title="Kontaktdaten des Leistungserbringers" />
+
+        <!-- Block Patient links -->
+        <area shape="rect" coords="170,151,494,239" title="Adresse" />
+        <area shape="rect" coords="170,240,494,256" title="Geburtsdatum" />
+        <area shape="rect" coords="170,257,494,273" title="Geschlecht" />
+        <area shape="rect" coords="170,274,494,291" title="Unfalldatum" />
+        <area shape="rect" coords="170,293,494,309" title="Unfall-/Verfügungsnummer" />
+        <area shape="rect" coords="170,311,494,326" title="AHV-Nr." />
+        <area shape="rect" coords="170,328,494,344" title="Versicherten-Nummer" />
+        <area shape="rect" coords="170,345,494,361" title="Betriebs-Nr./Name" />
+        <area shape="rect" coords="170,363,494,380" title="Kanton" />
+        <area shape="rect" coords="170,381,494,397" title="Rechnungskopie" />
+        <area shape="rect" coords="170,398,494,415" title="Vergütungsart" />
+        <area shape="rect" coords="170,417,494,433" title="Gesetz" />
+        <area shape="rect" coords="170,435,494,452" title="Behandlungsgrund" />
+        <area shape="rect" coords="170,453,494,470" title="Behandlung" />
+        <area shape="rect" coords="170,471,494,488" title="Erbringungsort" />
+
+        <!-- Block Patienten rechts -->
+        <area shape="rect" coords="580,151,930,168" title="EAN-Nr. der Krankenkasse des Patienten" class="ean" />
+        <area shape="rect" coords="580,200,930,400" title="Adressfeld für Briefcouverts" />
+        <area shape="rect" coords="580,453,930,470" title="Rechnungsnummer" />
+        <area shape="rect" coords="580,471,930,488" title="Rechnungs-/Mahndatum" />
+
+        <!-- Block unter Patient -->
+        <area shape="rect" coords="90,490,580,507" title="Auftraggeber" />
+        <area shape="rect" coords="90,508,580,526" title="Diagnose" />
+        <area shape="rect" coords="90,527,580,543" title="EAN-Liste" class="ean" /><!-- TODO: explanation -->
+        <area shape="rect" coords="90,544,580,562" title="Bemerkung" />
+
+        <!-- Spalten -->
+        <area shape="rect" coords="90,565,180,1100" title="Spalte Datum: Datum der Leistungserbringung" />
+        <area shape="rect" coords="185,565,216,1100" title="Spalte Tarif: Tarifnummer" /><!-- TODO: explanation -->
+        <area shape="rect" coords="222,565,287,1100" title="Spalte Tarifziffer" /><!-- TODO: lookup at http://onb.tarmedsuisse.ch for 001 -->
+        <area shape="rect" coords="295,565,360,1100" title="Spalte Bezugsziffer: bezieht sich auf Tarifziffer" />
+        <area shape="rect" coords="380,565,398,1100" title="Spalte Si: Session-Nummer<br />Wenn am gleichen Tag mehrere Arztbesuche geschehen, werden diese in dieser Spalte durch eine aufzählende Nummer unterschieden." />
+        <area shape="rect" coords="403,565,425,1100" title="Spalte St: Betroffene Körperhälfte<br />Leer, <strong>L</strong für Linke Körperhälfte oder <strong>R</strong> für Rechte Körperhälfte" />
+        <area shape="rect" coords="430,565,476,1100" title="Spalte Anzahl<br />Wie oft dieser Punkt verrechnet werden soll. Bei Medikamenten kann dies mehrere Packungen sein, bei Arztleistungen bspw. mehrere 5-Minuten-Abschnitte." />
+        <area shape="rect" coords="479,565,550,1100" title="Spalte TP AL/Preis: Taxpunkt der ärztlichen Leistung" />
+        <area shape="rect" coords="553,565,580,1100" title="Spalte f AL: Skalierungsfaktor Taxpunkte" />
+        <area shape="rect" coords="582,565,625,1100" title="Spalte TPW AL: Taxpunktwert der ärztlichen Leistung" />
+        <area shape="rect" coords="650,565,706,1100" title="Spalte TP TL: Taxpunkt der technischen Leistung" />
+        <area shape="rect" coords="709,565,734,1100" title="Spalte f TL: Skalierungsfaktor der technischen Leistung" />
+        <area shape="rect" coords="737,565,782,1100" title="Spalte TPW TL: Taxpunktwert der technischen Leistung" />
+        <area shape="rect" coords="788,565,802,1100" title="Spalte A: Ausführender Arzt<br />Referenz auf die EAN-Nummer des Arztes (siehe Feld <em>EAN-Liste</em>)" />
+        <area shape="rect" coords="805,565,818,1100" title="Spalte V: Verantwortlicher Arzt<br />Referenz auf die EAN-Nummer des Arztes (siehe Feld <em>EAN-Liste</em>)" />
+        <area shape="rect" coords="821,565,835,1100" title="Spalte P: Pflichtleistungscode<br />0 = Pflichtleistung der oblig. Grundversicherung<br />1= Nichtpflichtleistung" />
+        <area shape="rect" coords="838,565,854,1100" title="Spalte M: MwSt-Code" />
+        <area shape="rect" coords="870,565,935,1100" title="Spalte Betrag" />
+    </map>
+
+    <div style="display: none;" id="ean-tooltip">
+        EAN is bla di bla
+        <form class="ean-form">
+            EAN-Nummer: <input type="text" class="ean-number" />
+            <input type="submit" />
+        </form>
+        <div class="ean-results"></div>
+    </div>
+
+
+    <a href="https://github.com/colinfrei/Rueckforderungsbeleg-Krankenkasse"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 </body>
 </html>
